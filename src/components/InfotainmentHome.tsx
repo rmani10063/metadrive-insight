@@ -13,7 +13,7 @@ const InfotainmentHome = ({ onMetaDriveClick }: InfotainmentHomeProps) => {
     { name: "Spotify", icon: Music, color: "bg-green-600" },
     { name: "Netflix", icon: Video, color: "bg-red-600" },
     { name: "CarWebGuru", icon: Smartphone, color: "bg-purple-500" },
-    { name: "MetaDrive", icon: Gauge, color: "bg-cyan-500", special: true },
+    { name: "MetaDrive", icon: Car, color: "bg-blue-600", special: true },
   ];
 
   return (
@@ -37,24 +37,17 @@ const InfotainmentHome = ({ onMetaDriveClick }: InfotainmentHomeProps) => {
           {apps.map((app) => (
             <Button
               key={app.name}
-              variant={app.special ? "neon" : "glass"}
+              variant="glass"
               size="xl"
               onClick={app.special ? onMetaDriveClick : undefined}
-              className={`
-                h-40 flex flex-col items-center justify-center gap-4 text-lg font-semibold
-                ${app.special ? "animate-pulse-glow col-span-3" : ""}
-              `}
+              className="h-40 flex flex-col items-center justify-center gap-4 text-lg font-semibold relative"
             >
-              <div className={`${app.color} p-6 rounded-2xl`}>
+              <div className={`${app.color} p-6 rounded-2xl shadow-lg`}>
                 <app.icon className="h-12 w-12 text-white" />
               </div>
-              <span className={app.special ? "text-primary text-2xl" : ""}>
-                {app.name}
-              </span>
+              <span>{app.name}</span>
               {app.special && (
-                <span className="text-sm text-muted-foreground">
-                  Predictive Vehicle Intelligence
-                </span>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse" />
               )}
             </Button>
           ))}
