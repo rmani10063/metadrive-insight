@@ -25,7 +25,7 @@ const Dashboard = ({ onClose }: DashboardProps) => {
     totalKm: 45280,
     engineHours: 1820,
     lastService: "15-Oct-2024",
-    location: "MG Road, Bangalore",
+    location: "Ramapuram, Chennai 600089",
     timestamp: "2024-11-22 14:32:45 IST",
   };
 

@@ -53,9 +53,6 @@ const CaseStudyDetail = ({ caseStudy, onClose }: CaseStudyDetailProps) => {
             {getRiskIcon()}
             <div>
               <h1 className="text-3xl font-bold">{caseStudy.title}</h1>
-              <p className="text-muted-foreground">
-                Case Study ID: {caseStudy.id.toUpperCase()}
-              </p>
             </div>
           </div>
           <Button variant="ghost" size="icon" onClick={onClose} className="h-12 w-12">
@@ -64,14 +61,40 @@ const CaseStudyDetail = ({ caseStudy, onClose }: CaseStudyDetailProps) => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column: Component Image & AI Analysis */}
+          {/* Left Column: Digital Twin & Component Image */}
           <div className="lg:col-span-1 space-y-6">
+            {/* Digital Twin with Bounding Box */}
+            <Card className={cn("p-4 border-2 bg-black/40", getRiskColor())}>
+              <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+                <Activity className="h-4 w-4" />
+                Digital Twin - Component View
+              </h3>
+              <div className="relative w-full aspect-square bg-gradient-to-br from-background to-cockpit-glass/20 rounded-lg overflow-hidden border border-cockpit-border">
+                <img
+                  src={caseStudy.componentImage}
+                  alt={caseStudy.title}
+                  className="w-full h-full object-cover opacity-90"
+                />
+                {/* Bounding Box around faulty component */}
+                <div className={cn(
+                  "absolute inset-[10%] border-4 rounded-lg animate-pulse",
+                  caseStudy.risk === "high" && "border-risk-high shadow-[0_0_20px_rgba(239,68,68,0.6)]",
+                  caseStudy.risk === "moderate" && "border-risk-moderate shadow-[0_0_20px_rgba(249,115,22,0.6)]",
+                  caseStudy.risk === "low" && "border-risk-low shadow-[0_0_20px_rgba(234,179,8,0.6)]"
+                )}>
+                  <div className={cn(
+                    "absolute -top-6 left-0 px-2 py-1 rounded text-xs font-bold",
+                    caseStudy.risk === "high" && "bg-risk-high text-white",
+                    caseStudy.risk === "moderate" && "bg-risk-moderate text-white",
+                    caseStudy.risk === "low" && "bg-risk-low text-black"
+                  )}>
+                    FAULT DETECTED
+                  </div>
+                </div>
+              </div>
+            </Card>
+
             <Card className={cn("p-4 border-2", getRiskColor())}>
-              <img
-                src={caseStudy.componentImage}
-                alt={caseStudy.title}
-                className="w-full aspect-square object-cover rounded-lg mb-4"
-              />
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">AI Confidence</span>
