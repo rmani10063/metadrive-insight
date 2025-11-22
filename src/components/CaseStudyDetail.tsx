@@ -193,39 +193,109 @@ const CaseStudyDetail = ({ caseStudy, onClose }: CaseStudyDetailProps) => {
           {/* Right Column: AI Suggestions & Recommendation */}
           <div className="lg:col-span-1 space-y-6">
             <Card className={cn("p-4 border-2", getRiskColor())}>
-              <h3 className="text-lg font-bold mb-3">🤖 AI Suggestions</h3>
-              <ul className="space-y-2">
-                {caseStudy.aiSuggestions.map((suggestion, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-sm">
-                    <span className="text-primary mt-1">•</span>
-                    <span>{suggestion}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-bold flex items-center gap-2">
+                  <Activity className="h-5 w-5 text-primary" />
+                  AI Recommendations
+                </h3>
+                <Badge variant="outline" className="text-xs">
+                  {caseStudy.aiConfidence}% confidence
+                </Badge>
+              </div>
+              
+              <div className="mb-4">
+                <p className="text-sm font-semibold mb-2 flex items-center gap-2">
+                  <span className="text-primary">💡</span>
+                  AI Suggestions:
+                </p>
+                <ul className="space-y-1.5">
+                  {caseStudy.aiSuggestions.map((suggestion, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <span className="text-primary mt-0.5">•</span>
+                      <span>{suggestion}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="space-y-2 mt-4">
+                {caseStudy.risk === "high" && (
+                  <>
+                    <Button 
+                      variant="destructive" 
+                      size="lg" 
+                      className="w-full justify-between"
+                    >
+                      <span className="flex items-center gap-2">
+                        <AlertTriangle className="h-5 w-5" />
+                        Stop Immediately
+                      </span>
+                      <Badge variant="outline" className="bg-destructive/20 border-destructive text-white">
+                        Critical
+                      </Badge>
+                    </Button>
+                    <Button 
+                      variant="destructive" 
+                      size="lg" 
+                      className="w-full justify-between"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Truck className="h-5 w-5" />
+                        Request Tow
+                      </span>
+                      <Badge variant="outline" className="bg-destructive/20 border-destructive text-white">
+                        Critical
+                      </Badge>
+                    </Button>
+                  </>
+                )}
+                
+                <a 
+                  href="https://www.google.com/maps/dir/?api=1&destination=13.0569,80.1828"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full"
+                >
+                  <Button 
+                    variant={caseStudy.risk === "high" ? "outline" : "default"}
+                    size="lg" 
+                    className="w-full justify-between"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Navigation className="h-5 w-5" />
+                      Navigate to Service
+                    </span>
+                    <Badge variant="outline" className="bg-risk-moderate/20 border-risk-moderate">
+                      High Priority
+                    </Badge>
+                  </Button>
+                </a>
+                
+                <a 
+                  href="tel:+914448596000"
+                  className="block w-full"
+                >
+                  <Button 
+                    variant={caseStudy.risk === "high" ? "outline" : "default"}
+                    size="lg" 
+                    className="w-full justify-between bg-green-600 hover:bg-green-700 text-white border-green-600"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Phone className="h-5 w-5" />
+                      Call Service
+                    </span>
+                    <Badge variant="outline" className="bg-green-700/20 border-green-400 text-white">
+                      High Priority
+                    </Badge>
+                  </Button>
+                </a>
+              </div>
             </Card>
 
             <Card className="p-4 bg-primary/5 border-primary/50">
               <h3 className="text-lg font-bold mb-3">Expert Recommendation</h3>
               <p className="text-sm leading-relaxed">{caseStudy.recommendation}</p>
             </Card>
-
-            <Separator />
-
-            <div className="space-y-3">
-              <h3 className="text-lg font-bold">Quick Actions</h3>
-              <Button variant="neon" size="lg" className="w-full">
-                <Navigation className="h-5 w-5 mr-2" />
-                Navigate to Service Center
-              </Button>
-              <Button variant="cockpit" size="lg" className="w-full">
-                <Phone className="h-5 w-5 mr-2" />
-                Call Service Center
-              </Button>
-              <Button variant="outline" size="lg" className="w-full">
-                <Truck className="h-5 w-5 mr-2" />
-                Request Pickup / Towing
-              </Button>
-            </div>
           </div>
         </div>
       </div>

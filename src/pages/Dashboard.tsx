@@ -18,6 +18,7 @@ interface DashboardProps {
 const Dashboard = ({ onClose }: DashboardProps) => {
   const [selectedRisk, setSelectedRisk] = useState<RiskLevel | null>(null);
   const [selectedCase, setSelectedCase] = useState<CaseStudy | null>(null);
+  const [digitalTwinCaseId, setDigitalTwinCaseId] = useState<string>("");
 
   const vehicleInfo: VehicleInfo = {
     model: "BMW X5",
@@ -92,7 +93,11 @@ const Dashboard = ({ onClose }: DashboardProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
           {/* Left: Digital Twin */}
           <div className="lg:col-span-3">
-            <DigitalTwin />
+            <DigitalTwin 
+              caseStudies={caseStudies}
+              selectedCaseId={digitalTwinCaseId}
+              onCaseSelect={setDigitalTwinCaseId}
+            />
           </div>
 
           {/* Center: Risk Categories */}
