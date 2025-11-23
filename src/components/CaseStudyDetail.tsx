@@ -238,6 +238,7 @@ const CaseStudyDetail = ({ caseStudy, onClose }: CaseStudyDetailProps) => {
                       variant="destructive" 
                       size="lg" 
                       className="w-full justify-between"
+                      onClick={() => window.open('https://forms.gle/metadrive-pickup-request', '_blank')}
                     >
                       <span className="flex items-center gap-2">
                         <Truck className="h-5 w-5" />
@@ -248,6 +249,22 @@ const CaseStudyDetail = ({ caseStudy, onClose }: CaseStudyDetailProps) => {
                       </Badge>
                     </Button>
                   </>
+                )}
+                
+                {(caseStudy.risk === "moderate" || caseStudy.risk === "low") && (
+                  <Button 
+                    variant="risk-moderate" 
+                    size="lg" 
+                    className="w-full justify-between"
+                  >
+                    <span className="flex items-center gap-2">
+                      <AlertCircle className="h-5 w-5" />
+                      Reduce Speed
+                    </span>
+                    <Badge variant="outline" className="bg-risk-moderate/20 border-risk-moderate text-risk-moderate">
+                      Recommended
+                    </Badge>
+                  </Button>
                 )}
                 
                 <a 
@@ -289,6 +306,21 @@ const CaseStudyDetail = ({ caseStudy, onClose }: CaseStudyDetailProps) => {
                     </Badge>
                   </Button>
                 </a>
+                
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full justify-between"
+                  onClick={() => window.open('https://forms.gle/metadrive-pickup-request', '_blank')}
+                >
+                  <span className="flex items-center gap-2">
+                    <Truck className="h-5 w-5" />
+                    Request Pickup
+                  </span>
+                  <Badge variant="outline" className="bg-primary/20 border-primary">
+                    Available
+                  </Badge>
+                </Button>
               </div>
             </Card>
 

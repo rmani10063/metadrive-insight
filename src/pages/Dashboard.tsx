@@ -20,14 +20,34 @@ const Dashboard = ({ onClose }: DashboardProps) => {
   const [selectedCase, setSelectedCase] = useState<CaseStudy | null>(null);
   const [digitalTwinCaseId, setDigitalTwinCaseId] = useState<string>("");
 
+  const getCurrentISTDateTime = () => {
+    const now = new Date();
+    const istOffset = 5.5 * 60 * 60 * 1000; // IST is UTC+5:30
+    const istTime = new Date(now.getTime() + istOffset);
+    
+    const day = String(istTime.getUTCDate()).padStart(2, '0');
+    const month = istTime.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
+    const year = istTime.getUTCFullYear();
+    const hours = String(istTime.getUTCHours()).padStart(2, '0');
+    const minutes = String(istTime.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(istTime.getUTCSeconds()).padStart(2, '0');
+    
+    return {
+      dateOnly: `${day}-${month}-${year}`,
+      fullTimestamp: `${year}-${String(istTime.getUTCMonth() + 1).padStart(2, '0')}-${day} ${hours}:${minutes}:${seconds} IST`
+    };
+  };
+
+  const { dateOnly, fullTimestamp } = getCurrentISTDateTime();
+
   const vehicleInfo: VehicleInfo = {
-    model: "BMW X5",
+    model: "Mercedes GLC 200d",
     year: 2023,
     totalKm: 45280,
     engineHours: 1820,
-    lastService: "15-Oct-2024",
+    lastService: dateOnly,
     location: "Ramapuram, Chennai 600089",
-    timestamp: "2024-11-22 14:32:45 IST",
+    timestamp: fullTimestamp,
   };
 
   const riskCounts = {
