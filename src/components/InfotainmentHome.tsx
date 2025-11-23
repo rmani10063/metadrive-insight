@@ -8,12 +8,12 @@ interface InfotainmentHomeProps {
 
 const InfotainmentHome = ({ onMetaDriveClick }: InfotainmentHomeProps) => {
   const apps = [
+    { name: "MetaDrive", icon: Car, color: "bg-blue-600", special: true },
     { name: "Waze", icon: Navigation, color: "bg-blue-500" },
     { name: "Google Maps", icon: Map, color: "bg-green-500" },
     { name: "Spotify", icon: Music, color: "bg-green-600" },
     { name: "Netflix", icon: Video, color: "bg-red-600" },
     { name: "CarWebGuru", icon: Smartphone, color: "bg-purple-500" },
-    { name: "MetaDrive", icon: Car, color: "bg-blue-600", special: true },
   ];
 
   return (
@@ -33,7 +33,7 @@ const InfotainmentHome = ({ onMetaDriveClick }: InfotainmentHomeProps) => {
           <p className="text-muted-foreground text-lg">Select an application</p>
         </div>
 
-        <div className="grid grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-4 gap-8 max-w-5xl mx-auto">
           {apps.map((app) => (
             <Button
               key={app.name}
