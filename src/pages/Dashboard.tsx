@@ -33,19 +33,18 @@ const Dashboard = ({ onClose }: DashboardProps) => {
     const seconds = String(istTime.getUTCSeconds()).padStart(2, '0');
     
     return {
-      dateOnly: `${day}-${month}-${year}`,
       fullTimestamp: `${year}-${String(istTime.getUTCMonth() + 1).padStart(2, '0')}-${day} ${hours}:${minutes}:${seconds} IST`
     };
   };
 
-  const { dateOnly, fullTimestamp } = getCurrentISTDateTime();
+  const { fullTimestamp } = getCurrentISTDateTime();
 
   const vehicleInfo: VehicleInfo = {
     model: "Mercedes GLC 200d",
     year: 2023,
     totalKm: 45280,
     engineHours: 1820,
-    lastService: dateOnly,
+    lastService: "20-Jan-2025",
     location: "Ramapuram, Chennai 600089",
     timestamp: fullTimestamp,
   };
