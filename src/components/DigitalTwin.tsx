@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import digitalTwinImage from "@/assets/digital-twin.jpg";
+import digitalTwinImage from "@/assets/maruti-digital-twin.jpg";
 import { Scan, Eye, AlertTriangle } from "lucide-react";
 import { useState } from "react";
 import { CaseStudy } from "@/types/vehicle";

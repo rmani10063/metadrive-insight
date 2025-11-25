@@ -40,7 +40,7 @@ const Dashboard = ({ onClose }: DashboardProps) => {
   const { fullTimestamp } = getCurrentISTDateTime();
 
   const vehicleInfo: VehicleInfo = {
-    model: "Mercedes GLC 200d",
+    model: "Maruti Suzuki Brezza",
     year: 2023,
     totalKm: 45280,
     engineHours: 1820,
